@@ -33,6 +33,7 @@ class ImageFilterLibrary:
 
 # Command-line interface example
 def main():
+    def main():
     print("Welcome to Image Filter Library")
     image_path = input("Enter the path of the image: ")
     if not os.path.exists(image_path):
@@ -41,15 +42,24 @@ def main():
     
     library = ImageFilterLibrary(image_path)
     print("Available filters:", ", ".join(library.filters.keys()))
-    filter_name = input("Enter the filter you want to apply: ")
+    
+    while True:
+        filter_name = input("Enter the filter you want to apply: ")
+        try:
+            filtered_image = library.apply_filter(filter_name)
+            filtered_image.show()
+            break
+        except ValueError as e:
+            print(e)
 
-    try:
-        filtered_image = library.apply_filter(filter_name)
-        filtered_image.show()
+    while True:
         save_path = input("Enter the path to save the filtered image: ")
-        library.save_image(save_path)
-    except ValueError as e:
-        print(e)
+        try:
+            library.save_image(save_path)
+            break  # 저장이 성공하면 반복 종료
+        except IOError as e:
+            print(f"Error saving file: {e}")
+            print("Please enter a valid path.")
 
 if __name__ == "__main__":
     main()
