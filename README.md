@@ -26,6 +26,25 @@ class ImageFilterLibrary:
 
     def apply_sharpen(self):
         return self.image.filter(ImageFilter.SHARPEN)
+    def apply_blue_tint(self):
+        """파란 계열 필터 적용"""
+        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="blue")
+
+    def apply_red_tint(self):
+        """붉은 계열 필터 적용"""
+        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="red")
+
+    def apply_yellow_tint(self):
+        """노란 계열 필터 적용"""
+        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="yellow")
+
+    def apply_pink_tint(self):
+        """분홍 계열 필터 적용"""
+        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="pink")
+
+    def apply_purple_tint(self):
+        """보라 계열 필터 적용"""
+        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="purple")
 
     def save_image(self, save_path):
         self.image.save(save_path)
