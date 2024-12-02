@@ -8,8 +8,14 @@ class ImageFilterLibrary:
             "sharpen": self.apply_sharpen,
         }
 
+    def apply_filter(self, filter_name):
+        if filter_name not in self.filters:
+            raise ValueError(f"Filter '{filter_name}' is not available.")
+        self.image = self.filters[filter_name]()
+        return self.image
 
-      def save_image(self, save_path):
+
+    def save_image(self, save_path):
             self.image.save(save_path)
             print(f"Image saved to {save_path}")
 
