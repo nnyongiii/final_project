@@ -1,6 +1,17 @@
-def save_image(self, save_path):
-      self.image.save(save_path)
-      print(f"Image saved to {save_path}")
+class ImageFilterLibrary:
+    def __init__(self, image_path):
+        self.image_path = image_path
+        self.image = Image.open(image_path)
+        self.filters = {
+            "blur": self.apply_blur,
+            "contour": self.apply_contour,
+            "sharpen": self.apply_sharpen,
+        }
+
+
+      def save_image(self, save_path):
+            self.image.save(save_path)
+            print(f"Image saved to {save_path}")
 
 def main():
     print("Welcome to Image Filter Library")
