@@ -1,84 +1,13 @@
-**final_project** 
-from PIL import Image, ImageFilter
-import os
+# Image Filter Library
 
-class ImageFilterLibrary:
-    def __init__(self, image_path):
-        self.image_path = image_path
-        self.image = Image.open(image_path)
-        self.filters = {
-            "blur": self.apply_blur,
-            "contour": self.apply_contour,
-            "sharpen": self.apply_sharpen,
-        }
+A Python library for applying various filters to images and performing emotion-based filtering using FER.
 
-    def apply_filter(self, filter_name):
-        if filter_name not in self.filters:
-            raise ValueError(f"Filter '{filter_name}' is not available.")
-        self.image = self.filters[filter_name]()
-        return self.image
+## Features
+- Apply predefined filters (blur, sharpen, brighten, darken, etc.).
+- Emotion-based filtering using FER (Facial Expression Recognition).
+- Save filtered images to custom directories.
 
-    def apply_blur(self):
-        return self.image.filter(ImageFilter.BLUR)
-
-    def apply_contour(self):
-        return self.image.filter(ImageFilter.CONTOUR)
-
-    def apply_sharpen(self):
-        return self.image.filter(ImageFilter.SHARPEN)
-    def apply_blue_tint(self):
-        """파란 계열 필터 적용"""
-        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="blue")
-
-    def apply_red_tint(self):
-        """붉은 계열 필터 적용"""
-        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="red")
-
-    def apply_yellow_tint(self):
-        """노란 계열 필터 적용"""
-        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="yellow")
-
-    def apply_pink_tint(self):
-        """분홍 계열 필터 적용"""
-        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="pink")
-
-    def apply_purple_tint(self):
-        """보라 계열 필터 적용"""
-        return ImageOps.colorize(ImageOps.grayscale(self.image), black="black", white="purple")
-
-    def save_image(self, save_path):
-        self.image.save(save_path)
-        print(f"Image saved to {save_path}")
-
-# Command-line interface example
-def main():
-    def main():
-    print("Welcome to Image Filter Library")
-    image_path = input("Enter the path of the image: ")
-    if not os.path.exists(image_path):
-        print("File does not exist.")
-        return
-    
-    library = ImageFilterLibrary(image_path)
-    print("Available filters:", ", ".join(library.filters.keys()))
-    
-    while True:
-        filter_name = input("Enter the filter you want to apply: ")
-        try:
-            filtered_image = library.apply_filter(filter_name)
-            filtered_image.show()
-            break
-        except ValueError as e:
-            print(e)
-
-    while True:
-        save_path = input("Enter the path to save the filtered image: ")
-        try:
-            library.save_image(save_path)
-            break  # 저장이 성공하면 반복 종료
-        except IOError as e:
-            print(f"Error saving file: {e}")
-            print("Please enter a valid path.")
-
-if __name__ == "__main__":
-    main()
+## Installation
+Install the library using pip:
+```bash
+pip install image-filter-library
