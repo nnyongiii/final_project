@@ -32,5 +32,28 @@ class ImageFilterLibrary:
         return enhancer.enhance(1 / intensity)  # 강도에 반비례하여 어두워짐
     
     def save_image(self, save_path, image_to_save=None):
-        """저장"""
+        if image_to_save is None:
+            image_to_save = self.image  # 기본적으로 원본 이미지 저장
+
+        image_to_save.save(save_path)
+        print(f"Image saved to {save_path}")
+        
+    def apply_blue_tint(self):
+        """파란 계열 필터 적용"""
+        pass
+
+    def apply_red_tint(self):
+        """붉은 계열 필터 적용"""
+        pass
+
+    def apply_yellow_tint(self):
+        """노란 계열 필터 적용"""
+        pass
+
+    def apply_pink_tint(self):
+        """분홍 계열 필터 적용"""
+        pass
+
+    def apply_purple_tint(self):
+        """보라 계열 필터 적용"""
         pass
